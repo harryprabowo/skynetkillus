@@ -2,14 +2,19 @@ import random
 import string
 import re
 
+
 #Algoritma KMP, inputnya substring sama string, return boolean
 def KMP(substring, string):
+	string = string.lower()
+	substring = substring.lower()
 	result = False
 	pitable = []
 	newpitable = []
 	newpitable = [0]
 	subsList = ['x']
 	stringList = ['x']
+	charcocok = 0
+	tempcocok = 0
 	pitable = KMPspindex(substring)
 	
 	for x in pitable:
@@ -20,27 +25,39 @@ def KMP(substring, string):
 		stringList.append(x)
 	
 	if(len(substring) == 0):
-		return(True)
+		return(0)
 
 	matchindex = -1
 	i = 1
 	j = 0
+	found = False
 	while(i < len(stringList)):
 		if(subsList[j+1] == stringList[i]):
+			if found:
+				charcocok += 1
+			else:
+				if(tempcocok < charcocok):
+					tempcocok = charcocok
+				charcocok = 1
+			found = True
 			j += 1
 			i += 1
 		else:
 			if(j == 0):
 				i += 1
+				found = False
 			else:
 				j = newpitable[j]
+				found = False
 
 		#compare success
 		if(j + 1 == len(subsList)):
 			result = True
 			matchindex = i - len(substring)
+			tempcocok = len(substring)
 			break
-	return(result)
+
+	return(tempcocok/len(string) * 100)
 
 
 #KMPspindex adalah fungsi yang digunakan pada KMP() untuk mencari pitable 
@@ -65,25 +82,33 @@ def KMPspindex(substring):
 
 #ALGORITMA STRING MATCHING BOYERMOORE
 def BM(substring, string):
-	LOtable = LastOccurence(substring)
+	string = string.lower()
+	substring = substring.lower()
+	charcocok = 0
+	tempcocok = 0
 	i = len(substring) - 1
 	j = len(substring) - 1
 
 	if(len(substring) == 0):
-		return(True)
+		return(0/len(string) * 100)
 
 	while(i < len(string)):
 		if(substring[j] == string[i]):
 			if j == 0:
-				return(True)
+				return(len(substring)/len(string) * 100)
 			else:
+				charcocok += 1
 				i -= 1
 				j -= 1
 		else:
+			if(tempcocok < charcocok):
+				tempcocok = charcocok
+			LOtable = LastOccurence(substring[:j])
 			l = findval(LOtable, string[i])
 			i = i + len(substring) - min(j, 1+l)
-			j = len(substring) - 1 
-	return(False)
+			charcocok = 0
+			j = len(substring) - 1
+	return(tempcocok/len(string) * 100)
 
 #fungsi last occurence buat booyer moore
 def LastOccurence(substring):
@@ -94,24 +119,26 @@ def LastOccurence(substring):
 	for x in last:
 		if(x not in temp):
 			temp.append(x)
+	#print(temp)
 	return(temp)
 
 def findval(lotable, char):
 	for x in lotable:
 		if(x[0] == char):
 			return(x[1])
-	return(-1)
+	return(9999)
 
 
 #ALGORITMA REGEX LITERALLY NGEMATCH DOANG
 def regexmatch(substring, string):
 	if(len(substring) == 0):
-		return(True)
+		return(0)
 	matchlist = re.findall(substring, string)
 	if(len(matchlist) == 0):
-		return(False)
+		return(0)
 	else:
-		return(True)
+		floatret = len(matchlist[0])/len(string) * 100
+		return(floatret)
 
 
 #fungsi buat bikin testcase
@@ -163,8 +190,8 @@ def main():
 		print(boolRegex)
 
 
-		if(boolKMP != boolBM):
-			print('TC WRONG ANSWER')
+		#if(boolKMP != boolBM):
+		#	print('TC WRONG ANSWER')
 	
 	#testcase ngegenerate random string dan substring yang udh pasti gk ada di dalem
 	#semua tc harus return False
@@ -187,8 +214,14 @@ def main():
 		print('Regex \t', end = '')
 		print(boolRegex)
 
-
-		if(boolKMP != boolBM):
-			print('TC WRONG ANSWER')
+		#if(boolKMP != boolBM):
+		#	print('TC WRONG ANSWER')
 	
-main()
+	string = "Apakah chatbot itu manusia ?"
+	pattern = "Apakah chatbot ?"
+	print()
+	#print(len(string))
+	#print(len(pattern))
+	print(KMP(pattern, string))
+	print(BM(pattern, string))
+
