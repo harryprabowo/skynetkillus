@@ -24,7 +24,7 @@ def KMP(substring, string):
 	for x in string:
 		stringList.append(x)
 	
-	if(len(substring) == 0):
+	if(len(substring) == 0 or len(string) == 0):
 		return(0)
 
 	matchindex = -1
@@ -89,8 +89,8 @@ def BM(substring, string):
 	i = len(substring) - 1
 	j = len(substring) - 1
 
-	if(len(substring) == 0):
-		return(0/len(string) * 100)
+	if(len(substring) == 0 or len(string) == 0):
+		return(0)
 
 	while(i < len(string)):
 		if(substring[j] == string[i]):
