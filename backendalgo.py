@@ -225,3 +225,4 @@ def main():
 	print(KMP(pattern, string))
 	print(BM(pattern, string))
 
+main()
