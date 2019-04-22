@@ -70,7 +70,7 @@ def backupsearch(string, backupq):
 	string = stemmer.stem(string)
 	string = stopword.remove(string)
 	keystring = string.split(' ')
-	print(keystring)
+	# print(keystring)
 	for y in range(len(backupq)):
 		cnt = 0
 		for x in keystring:
@@ -90,23 +90,24 @@ def backupsearch(string, backupq):
 def queryhandling(backupq, datall, stringinp, boolfound, indexpilihan):
 	#print(indexpilihan)
 	if(boolfound):
-		print("pertanyaan pengguna :")
-		print(stringinp)
-		print("pertanyaan tersimpan : ")
+		# print("pertanyaan pengguna :")
+		# print(stringinp)
+		# print("pertanyaan tersimpan : ")
 		for x in range(0, min(3, len(indexpilihan))):
-			print(indexpilihan)
-			print(datall[indexpilihan[x][0]][0])
-			print("jawaban : ")
-			print(datall[indexpilihan[x][0]][1])
+			# print(indexpilihan)
+			# print(datall[indexpilihan[x][0]][0])
+			# print("jawaban : ")
+			return (datall[indexpilihan[x][0]][1])
 	else:
 		indexbackup = backupsearch(stringinp, backupq)
 		if(indexbackup != -1):
-			print(datall[indexbackup][1])
+			return (datall[indexbackup][1])
 		else:
-			print("U wot m8?")
+			return ("U wot m8?")
 
-def main():
-	print(sys.path)
+
+def main(stringinp):
+	# print(sys.path)
 	'''
 	CONTOH CARA PAKAI:
 
@@ -114,12 +115,13 @@ def main():
 	indexpilihan = []
 	datall = makedata()
 	backupq = backupcariquery(datall)
+	stringinp = str(stringinp)
 
-	print("Halo, selamat datang")
-	while 1:
-		print(">" , end = '')
-		stringinp = input()
-		(indexpilihan, boolfound)  = cariquery(stringinp, datall)
-		queryhandling(backupq, datall, stringinp, boolfound, indexpilihan)
+	# print("Halo, selamat datang")
+	# while 1:
+	# print(">" , end = '')
+	(indexpilihan, boolfound) = cariquery(stringinp, datall)
+	print (queryhandling(backupq, datall, stringinp, boolfound, indexpilihan))
 
-main()
+
+main(sys.argv[1:])

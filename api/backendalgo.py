@@ -166,63 +166,63 @@ def randomSub(stringer):
 
 
 
-def main():
+# def main():
 	
-	#testcase ngegenerate random string dan substring yang udh pasti ada di dalem
-	#semua tc harus return True
-	print('\n\nTC SEMUA TRUE\n\n')
-	for x in range(3,30):
-		string = randomString(x)
-		pattern = randomSub(string)
-		print ('random string = ' + string)
-		print ('random substring = ' + pattern)
+# 	# testcase ngegenerate random string dan substring yang udh pasti ada di dalem
+# 	# semua tc harus return True
+# 	print('\n\nTC SEMUA TRUE\n\n')
+# 	for x in range(3,30):
+# 		string = randomString(x)
+# 		pattern = randomSub(string)
+# 		print ('random string = ' + string)
+# 		print ('random substring = ' + pattern)
 	
 		
-		boolKMP = KMP(pattern, string)
-		boolBM = BM(pattern, string)
-		boolRegex = regexmatch(pattern, string)
+# 		boolKMP = KMP(pattern, string)
+# 		boolBM = BM(pattern, string)
+# 		boolRegex = regexmatch(pattern, string)
 
-		print('KMP \t', end = '')
-		print(boolKMP)
-		print('BM \t', end = '') 
-		print(boolBM)
-		print('Regex \t', end = '')
-		print(boolRegex)
+# 		print('KMP \t', end = '')
+# 		print(boolKMP)
+# 		print('BM \t', end = '') 
+# 		print(boolBM)
+# 		print('Regex \t', end = '')
+# 		print(boolRegex)
 
 
-		#if(boolKMP != boolBM):
-		#	print('TC WRONG ANSWER')
+# 		#if(boolKMP != boolBM):
+# 		#	print('TC WRONG ANSWER')
 	
-	#testcase ngegenerate random string dan substring yang udh pasti gk ada di dalem
-	#semua tc harus return False
-	print('\n\nTC SEMUA FALSE\n\n')
+# 	#testcase ngegenerate random string dan substring yang udh pasti gk ada di dalem
+# 	#semua tc harus return False
+# 	print('\n\nTC SEMUA FALSE\n\n')
 
-	for x in range(3,30):
-		string = randomString(x)
-		pattern = randomString(x)
-		print ('random string = ' + string)
-		print ('random substring = ' + pattern)
+# 	for x in range(3,30):
+# 		string = randomString(x)
+# 		pattern = randomString(x)
+# 		print ('random string = ' + string)
+# 		print ('random substring = ' + pattern)
 	
-		boolKMP = KMP(pattern, string)
-		boolBM = BM(pattern, string)
-		boolRegex = regexmatch(pattern, string)
+# 		boolKMP = KMP(pattern, string)
+# 		boolBM = BM(pattern, string)
+# 		boolRegex = regexmatch(pattern, string)
 
-		print('KMP \t', end = '')
-		print(boolKMP)
-		print('BM \t', end = '') 
-		print(boolBM)
-		print('Regex \t', end = '')
-		print(boolRegex)
+# 		print('KMP \t', end = '')
+# 		print(boolKMP)
+# 		print('BM \t', end = '') 
+# 		print(boolBM)
+# 		print('Regex \t', end = '')
+# 		print(boolRegex)
 
-		#if(boolKMP != boolBM):
-		#	print('TC WRONG ANSWER')
+# 		#if(boolKMP != boolBM):
+# 		#	print('TC WRONG ANSWER')
 	
-	string = "Apakah chatbot itu manusia ?"
-	pattern = "Apakah chatbot ?"
-	print()
-	#print(len(string))
-	#print(len(pattern))
-	print(KMP(pattern, string))
-	print(BM(pattern, string))
+# 	string = "Apakah chatbot itu manusia ?"
+# 	pattern = "Apakah chatbot ?"
+# 	print()
+# 	#print(len(string))
+# 	#print(len(pattern))
+# 	print(KMP(pattern, string))
+# 	print(BM(pattern, string))
 
-main()
+# main()
