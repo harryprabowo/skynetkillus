@@ -8,24 +8,15 @@
 </head>
 <body>
 <!------ Include the above in your HEAD tag ---------->
-<script>
-        function changeImage() {
-    
-            if (document.getElementById("ava1").src == "elemen/img/kartunix-create-free-avatar-2.png") 
-            {
-                document.getElementById("ava1").src = "elemen/img/kartunix-create-free-avatar.png";
-            }
-            else 
-            {
-                document.getElementById("ava1").src = "elemen/img/kartunix-create-free-avatar-2.png";
-            }
-        }
-</script>
+
 
 <link href="elemen/css/chat.css" rel="stylesheet" id="chat-css">
-<div class="container">
+<div class="container-fluid">
     <div class="row">
-        <div class="col-md-8">
+        <div class="row-xs-3">
+            <img src="elemen/img/kartunix-create-free-avatar.png" style="margin-top:30px; max-width:100%;" id="avatar1" >
+        </div>
+        <div class="col-sm-7">
             <div class="panel panel-primary">
                 <div class="panel-heading rounded-top">
                     <strong class="primary-font">SkyNetKillUs Bot</strong>
@@ -34,7 +25,7 @@
                     <ul class="chat">
                             <li class="left clearfix">
                                     <div class="row">
-                                    <div class="chat-body clearfix pull-left col-md-8">
+                                    <div class="chat-body clearfix pull-left col-sm-7">
                                         <p>
                                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
                                             dolor, quis ullamcorper ligula sodales.
@@ -44,7 +35,7 @@
                             </li>
                         <li class="right clearfix">
                             <div class="row">
-                                <div class="chat-body pull-right clearfix col-md-8">
+                                <div class="chat-body pull-right clearfix col-sm-7">
                                     <p>
                                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
                                         dolor, quis ullamcorper ligula sodales.
@@ -58,17 +49,29 @@
                     <div class="input-group">
                         <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
                         <span class="input-group-btn">
-                            <button class="btn btn-warning btn-sm" id="btn-chat" onclick="changeImage()">
+                            <button onclick= "changeImage()" class="btn btn-warning btn-sm" id="btn-chat" >
                                 Send</button>
+                                <script lang="JavaScript">
+                                        function changeImage() {
+                                            if (document.getElementById("avatar1").src == "elemen/img/kartunix-create-free-avatar-2.png") 
+                                            {
+                                                document.getElementById("avatar1").src = "elemen/img/kartunix-create-free-avatar.png";
+                                                document.getElementById("demo").innerHTML = Date();
+                                            }
+                                            else 
+                                            {
+                                                document.getElementById("avatar1").src = "elemen/img/kartunix-create-free-avatar.png";
+                                                document.getElementById("demo").innerHTML = "lalal";
+                                            }
+                                        }
+                                </script>
                         </span>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row-md-3">
-            <img src="elemen/img/kartunix-create-free-avatar-2.png" id="ava1" style="width:300px;height:300px;padding-top:30px">
-        </div>
     </div>
+    <p id="demo"></p>
 </div>
  <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
